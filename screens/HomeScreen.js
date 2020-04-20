@@ -1,6 +1,6 @@
-import React from './node_modules/react';
+import React from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
-import { createStackNavigator } from './node_modules/@react-navigation/stack';
+import { createStackNavigator } from "react-navigation";
 import { Constants } from 'expo';
 
 export default class MovieBrowser extends React.Component {
