@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
-import { createStackNavigator } from "react-navigation";
-import { Constants } from 'expo';
+import { createStackNavigator } from '@react-navigation/stack';
+import Constants from 'expo-constants';
 
 export default class MovieBrowser extends React.Component {
     state = {
@@ -42,10 +42,3 @@ const styles = StyleSheet.create({
       },
   });
   
-  const AppNavigator = createStackNavigator({
-    Home: HomeScreen,
-    Results: ResultsScreen
-   },
-   {
-     initialRouteName: "HomeScreen"
-   });
