@@ -1,21 +1,27 @@
 import React from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { StyleSheet, TextInput, View, Button } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Constants from 'expo-constants';
 
 export default class MovieBrowser extends React.Component {
     state = {
-        title: ""
+        title: '',
     }
+
+    handleTitleChange = title => {
+      this.setState({title})
+    }
+
     render() {
         return (
           <View behavior="padding" style={styles.container}>
             <TextInput
               style={styles.input}
               value={this.state.title}
-              // onChangeText={}
+              onChangeText={this.handleTitleChange}
               placeholder="Movie Title"
             />
+            <Button style={styles.button} title="Submit Movie" />
           </View>
         );
     }
@@ -39,6 +45,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 5,
         borderRadius: 3,
-      },
+    },
+    button: {
+       paddingVertical: 10
+    },
   });
   
