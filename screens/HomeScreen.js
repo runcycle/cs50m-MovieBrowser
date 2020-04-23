@@ -2,10 +2,22 @@ import React from 'react';
 import { StyleSheet, TextInput, View, Button } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Constants from 'expo-constants';
+import {fetchUsers} from '../api'
 
 export default class MovieBrowser extends React.Component {
     state = {
         title: '',
+        movies: null,
+    }
+
+    componentDidMount() {
+      this.getUsers()
+      console.log(this.state.movies)
+    }
+
+    getUsers = async () => {
+      const data = await fetchUsers()
+      this.setState({movies: data})
     }
 
     handleTitleChange = title => {
@@ -21,7 +33,7 @@ export default class MovieBrowser extends React.Component {
               onChangeText={this.handleTitleChange}
               placeholder="Movie Title"
             />
-            <Button style={styles.button} title="Submit Movie" />
+            <Button title="Submit Movie" />
           </View>
         );
     }
@@ -39,15 +51,12 @@ const styles = StyleSheet.create({
     input: {
         borderWidth: 1,
         borderColor: 'black',
-        minWidth: 100,
-        marginTop: 20,
+        minWidth: 200,
+        marginVertical: 20,
         marginHorizontal: 20,
         paddingHorizontal: 10,
         paddingVertical: 5,
         borderRadius: 3,
-    },
-    button: {
-       paddingVertical: 10
     },
   });
   
