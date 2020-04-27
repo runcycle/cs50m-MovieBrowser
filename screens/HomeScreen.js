@@ -10,14 +10,14 @@ export default class MovieBrowser extends React.Component {
         movies: null,
     }
 
+    getUsers = async () => {
+      const results = await fetchUsers()
+      this.setState({movies: results})
+    }
+
     componentDidMount() {
       this.getUsers()
       console.log(this.state.movies)
-    }
-
-    getUsers = async () => {
-      const data = await fetchUsers()
-      this.setState({movies: data})
     }
 
     handleTitleChange = title => {
@@ -32,6 +32,7 @@ export default class MovieBrowser extends React.Component {
               value={this.state.title}
               onChangeText={this.handleTitleChange}
               placeholder="Movie Title"
+              autoCapitalize="none"
             />
             <Button title="Submit Movie" />
           </View>
