@@ -29,7 +29,7 @@ export default class MovieBrowser extends React.Component {
               returnKeyType="search"
               onChangeText={(text) => this.setState({title: text})}
             />
-            <Button title="Submit Movie" onPress={() => this.handleTitleSubmit} />
+            <Button title="Submit Movie" onPress={() => this.handleTitleSubmit()} />
           </View>
         );
     }
