@@ -1,25 +1,24 @@
 import React from 'react';
 import { StyleSheet, TextInput, View, Button } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
 import Constants from 'expo-constants';
 import {fetchMovie} from '../api';
 
 export default class MovieBrowser extends React.Component {
     state = {
-        title: '',
-        movies: [],
+      input: '',  
+      movieData: [],
     }
 
     getMovie = async () => {
-      const results = await fetchMovie(this.state.title)
-      this.setState({movies: results})
-      console.log(this.state.movies)
+      const results = await fetchMovie(this.state.input)
+      this.setState({movieData: results})
+      console.log(this.state.movieData)
     }
 
     handleTitleSubmit() {
-      this.getMovie()
+      this.getMovie();
     }
-// 4/29 Work on title submit to api
+
     render() {
         return (
           <View behavior="padding" style={styles.container}>
@@ -27,7 +26,7 @@ export default class MovieBrowser extends React.Component {
               style={styles.input}
               placeholder="Movie Title"
               returnKeyType="search"
-              onChangeText={(text) => this.setState({title: text})}
+              onChangeText={text => this.setState({input: text})}
             />
             <Button title="Submit Movie" onPress={() => this.handleTitleSubmit()} />
           </View>
