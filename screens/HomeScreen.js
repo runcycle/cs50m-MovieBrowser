@@ -1,12 +1,12 @@
 import React from 'react';
-import { StyleSheet, TextInput, View, Button } from 'react-native';
+import { StyleSheet, TextInput, View, FlatList } from 'react-native';
 import Constants from 'expo-constants';
-import {fetchMovie} from '../api';
+import { fetchMovie } from '../api';
 
 export default class MovieBrowser extends React.Component {
     state = {
       input: '',  
-      movieData: [],
+      movieData: null,
     }
 
     getMovie = async () => {
@@ -15,7 +15,7 @@ export default class MovieBrowser extends React.Component {
       console.log(this.state.movieData)
     }
 
-    handleTitleSubmit() {
+    handleTextChange() {
       this.getMovie();
     }
 
@@ -26,9 +26,12 @@ export default class MovieBrowser extends React.Component {
               style={styles.input}
               placeholder="Movie Title"
               returnKeyType="search"
+              onSubmitEditing={() => this.handleTextChange()}
               onChangeText={text => this.setState({input: text})}
             />
-            <Button title="Submit Movie" onPress={() => this.handleTitleSubmit()} />
+            <FlatList style={{ flex: 1 }}
+                data={this.state.movieData}
+            />
           </View>
         );
     }
