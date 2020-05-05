@@ -2,8 +2,10 @@ import React from 'react';
 import { StyleSheet, TextInput, View, FlatList } from 'react-native';
 import Constants from 'expo-constants';
 import { fetchMovie } from '../api';
+import SearchCard from '../SearchCard';
 
-export default class MovieBrowser extends React.Component {
+
+export default class HomeScreen extends React.Component {
     state = {
       input: '',  
       movieData: null,
@@ -31,6 +33,7 @@ export default class MovieBrowser extends React.Component {
             />
             <FlatList style={{ flex: 1 }}
                 data={this.state.movieData}
+                renderItem={obj => <SearchCard {...obj.item} />}
             />
           </View>
         );
@@ -47,7 +50,7 @@ const styles = StyleSheet.create({
         paddingTop: Constants.statusBarHeight,
     },
     input: {
-        borderWidth: 1,
+        borderWidth: 2,
         borderColor: 'black',
         minWidth: 200,
         marginVertical: 20,

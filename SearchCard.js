@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 
-const MovieCard = props => (
+const SearchCard = props => (
     <TouchableOpacity onPress={() => this.props.navigation.navigate("ResultsScreen", item)}>
         <View style={styles.row}>
             <Image
@@ -45,4 +45,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default MovieCard
+export default SearchCard
