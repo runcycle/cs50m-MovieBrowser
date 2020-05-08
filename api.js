@@ -8,7 +8,9 @@ const filterData = (movie) => ({
 });
 
 export const fetchMovie = async (input) => {
-    const url = `https://www.omdbapi.com/?s=${input}&apikey=${KEY}`
+    cleanedInput = input.replace(/\s/g, "+");
+
+    const url = `https://www.omdbapi.com/?s=${cleanedInput}&apikey=${KEY}`
     try {
         const response = await fetch(url);
         const results = await response.json()
