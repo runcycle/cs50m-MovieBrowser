@@ -1,11 +1,21 @@
-import React, { Component } from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import MovieBrowser from './screens/HomeScreen';
+import React from "react";
+import { createStackNavigator } from "react-navigation";
+import HomeScreen from "./screens/HomeScreen";
+//import DetailsScreen from "./screens/DetailsScreen";
 
-export default class App extends Component {
+const MainStack = createStackNavigator(
+  {
+    Home: HomeScreen,
+    //Details: DetailsScreen
+  },
+  {
+    initialRouteName: "Home"
+  }
+);
+
+
+export default class App extends React.Component {
   render() {
-      return <MovieBrowser />
+      return <MainStack />
     }
   }
-  
-

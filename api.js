@@ -1,14 +1,10 @@
-const key = "974478bf";
+const KEY = "974478bf";
 
-const filterData = movie => ({
+const filterData = (movie) => ({
     title: movie.Title,
-    rating: movie.Rated,
-    poster: movie.Poster,
-    director: movie.Director,
-    starring: movie.Actors,
-    plot: movie.Plot,
     year: movie.Year,
-    id: movie.imdbID
+    key: movie.imdbID,
+    poster: movie.Poster
 });
 
 export const fetchMovie = async (input) => {
