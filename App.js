@@ -1,21 +1,19 @@
 import React from "react";
-import { createStackNavigator } from "react-navigation";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from "./screens/HomeScreen";
 //import DetailsScreen from "./screens/DetailsScreen";
 
-const MainStack = createStackNavigator(
-  {
-    Home: HomeScreen,
-    //Details: DetailsScreen
-  },
-  {
-    initialRouteName: "Home"
-  }
-);
-
+const Stack = createStackNavigator();
 
 export default class App extends React.Component {
   render() {
-      return <MainStack />
+      return (
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="Movie Search" style={{ alignItems: "center" }}component={ HomeScreen } />
+          </Stack.Navigator>
+        </NavigationContainer>
+      );
     }
   }
