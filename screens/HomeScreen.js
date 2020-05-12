@@ -5,10 +5,6 @@ import { fetchMovie } from '../api';
 import SearchCard from '../SearchCard';
 
 export default class HomeScreen extends React.Component {
-    static navigationOptions = ({ navigation }) => ({
-      headerTitle: "Movie Search"
-    });
-    
     state = {
       input: '',  
       movieData: null,
@@ -51,7 +47,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#fff",
         alignItems: "center",
-        justifyContent: "flex-end",
         backgroundColor: "#ffa200",
         paddingTop: Constants.statusBarHeight,
     },
