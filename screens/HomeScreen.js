@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TextInput, View, FlatList } from 'react-native';
+import { StyleSheet, TextInput, KeyboardAvoidingView, View, FlatList } from 'react-native';
 import Constants from 'expo-constants';
 import { fetchMovie } from '../api';
 import SearchCard from '../SearchCard';
@@ -27,16 +27,19 @@ export default class HomeScreen extends React.Component {
     render() {
         return (
           <View behavior="padding" style={styles.container}>
-            <TextInput
-              style={styles.input}
-              placeholder="Movie Title"
-              returnKeyType="search"
-              onSubmitEditing={() => this.handleTextChange()}
-              onChangeText={text => this.setState({input: text})}
-            />
+            <KeyboardAvoidingView>
+              <TextInput
+                  style={styles.input}
+                  placeholder="Enter a Movie Title"
+                  placeholderTextColor="#6d6d6d"
+                  returnKeyType="search"
+                  onSubmitEditing={() => this.handleTextChange()}
+                  onChangeText={text => this.setState({input: text})}
+              />
+            </KeyboardAvoidingView>
             <FlatList style={{ flex: 1 }}
-                data={this.state.movieData}
-                renderItem={obj => <SearchCard {...obj.item} />}
+              data={this.state.movieData}
+              renderItem={obj => <SearchCard {...obj.item} />}
             />
           </View>
         );
@@ -46,17 +49,19 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: "#fff",
+        alignItems: "center",
+        justifyContent: "flex-end",
+        backgroundColor: "#ffa200",
         paddingTop: Constants.statusBarHeight,
     },
     input: {
+        alignItems: "center",
+        justifyContent: "center",
         borderWidth: 2,
-        borderColor: 'black',
-        minWidth: 200,
-        marginVertical: 20,
+        borderColor: "black",
+        minWidth: 300,
+        marginVertical: 10,
         marginHorizontal: 20,
         paddingHorizontal: 10,
         paddingVertical: 5,
