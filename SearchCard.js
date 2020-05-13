@@ -1,5 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+//import { createAppContainer } from 'react-navigation';
+//import { createStackNavigator } from 'react-navigation-stack';
 
 const SearchCard = props => (
     <TouchableOpacity onPress={() => navigation.navigate("DetailsScreen", item)}>
