@@ -6,6 +6,10 @@ import Constants from 'expo-constants';
 //import MovieCard from "../MovieCard";
 
 export default class DetailsScreen extends React.Component {
+    static navigationOptions = {
+        title: "Details",
+    };
+
     render () {
         return (
             <View style={styles.container}>
