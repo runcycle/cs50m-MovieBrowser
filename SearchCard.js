@@ -1,19 +1,19 @@
-import React from 'react'
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import React from 'react';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 const SearchCard = props => (
-    <TouchableOpacity onPress={() => navigation.navigate("DetailsScreen", item)}>
-        <View style={styles.row}>
-            <Image
-                style={styles.image}
-                source={{uri: `${props.poster}`}}
-            />
-            <View style={{flexDirection:'column'}}>
-                <Text style={styles.title}>{props.title}</Text>
-                <Text style={styles.year}>{props.year}</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("DetailsScreen", item)}>
+            <View style={styles.row}>
+                <Image
+                    style={styles.image}
+                    source={{uri: `${props.poster}`}}
+                />
+                <View style={{flexDirection:'column'}}>
+                    <Text style={styles.title}>{props.title}</Text>
+                    <Text style={styles.year}>{props.year}</Text>
+                </View>
             </View>
-        </View>
-    </TouchableOpacity>
+        </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({

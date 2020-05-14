@@ -5,7 +5,9 @@ import { fetchMovie } from '../api';
 import SearchCard from '../SearchCard';
 
 export default class HomeScreen extends React.Component {
-    state = {
+    
+  
+  state = {
       input: '',  
       movieData: null,
     }

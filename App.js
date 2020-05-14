@@ -10,9 +10,11 @@ export default class App extends React.Component {
   render() {
       return (
         <NavigationContainer>
-          <Stack.Navigator>
+          <Stack.Navigator initialRouteName="Movie Search">
             <Stack.Screen name="Movie Search" component={ HomeScreen } />
-            <Stack.Screen name="Movie Details" component={ DetailsScreen } />
+            <Stack.Screen name="Movie Details">
+              {props => <DetailsScreen {...props} />}
+            </Stack.Screen>
           </Stack.Navigator>
         </NavigationContainer>
       );
