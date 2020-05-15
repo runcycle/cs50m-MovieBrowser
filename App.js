@@ -10,11 +10,14 @@ export default class App extends React.Component {
   render() {
       return (
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Movie Search">
+          <Stack.Navigator 
+            initialRouteName="Movie Search"
+            screenOptions={{
+              headerTitleAlign: "center"
+              }}
+            >
             <Stack.Screen name="Movie Search" component={ HomeScreen } />
-            <Stack.Screen name="Movie Details">
-              {props => <DetailsScreen {...props} />}
-            </Stack.Screen>
+            <Stack.Screen name="Movie Details" component={ DetailsScreen } />
           </Stack.Navigator>
         </NavigationContainer>
       );

@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 const SearchCard = props => (
-        <TouchableOpacity onPress={() => navigation.navigate("DetailsScreen", item)}>
+        <TouchableOpacity>
             <View style={styles.row}>
                 <Image
                     style={styles.image}

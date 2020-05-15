@@ -5,8 +5,6 @@ import { fetchMovie } from '../api';
 import SearchCard from '../SearchCard';
 
 export default class HomeScreen extends React.Component {
-    
-  
   state = {
       input: '',  
       movieData: null,
@@ -14,7 +12,7 @@ export default class HomeScreen extends React.Component {
 
     getMovie = async () => {
       const results = await fetchMovie(this.state.input)
-      this.setState({movieData: results})
+      this.setState({ movieData: results })
       console.log(this.state.movieData)
     }
 
@@ -23,6 +21,9 @@ export default class HomeScreen extends React.Component {
     }
 
     render() {
+        function detailsNavigate({ navigation }) {
+          navigation.navigate("DetailsScreen");
+        };
         return (
           <View behavior="padding" style={styles.container}>
             <KeyboardAvoidingView>
@@ -38,7 +39,8 @@ export default class HomeScreen extends React.Component {
             <FlatList style={{ flex: 1 }}
               data={this.state.movieData}
               renderItem={obj => <SearchCard {...obj.item} />}
-            />
+              >
+            </FlatList>
           </View>
         );
     }
