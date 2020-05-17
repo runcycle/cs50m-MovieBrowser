@@ -1,8 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
+/*
+Possible Solution:
+https://github.com/react-navigation/react-navigation/issues/2198
+*/
+
 const SearchCard = props => (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('MovieDetailsScreen', item)}>
             <View style={styles.row}>
                 <Image
                     style={styles.image}

@@ -20,14 +20,6 @@ export default class HomeScreen extends React.Component {
       this.getMovie();
     }
 
-    /* 
-    renderItem = ({item}) => (
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('MovieDetailsScreen', item)} >
-            <Row {...item} />
-        </TouchableOpacity>
-    );
-    */
-
     render() {
         function detailsNavigate({ navigation }) {
           navigation.navigate("DetailsScreen");
