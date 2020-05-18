@@ -16,8 +16,8 @@ export default class App extends React.Component {
               headerTitleAlign: "center"
               }}
             >
-            <Stack.Screen name="Movie Search" component={ HomeScreen } />
-            <Stack.Screen name="Movie Details" component={ DetailsScreen } />
+            <Stack.Screen name="HomeScreen" component={ HomeScreen } />
+            <Stack.Screen name="DetailsScreen" component={ DetailsScreen } />
           </Stack.Navigator>
         </NavigationContainer>
       );

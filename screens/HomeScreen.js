@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TextInput, KeyboardAvoidingView, View, FlatList } from 'react-native';
+import { StyleSheet, TextInput, KeyboardAvoidingView, View, FlatList, TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants';
 import { fetchMovie } from '../api';
 import SearchCard from '../SearchCard';
@@ -21,9 +21,6 @@ export default class HomeScreen extends React.Component {
     }
 
     render() {
-        function detailsNavigate({ navigation }) {
-          navigation.navigate("DetailsScreen");
-        };
         return (
           <View behavior="padding" style={styles.container}>
             <KeyboardAvoidingView>
@@ -36,11 +33,13 @@ export default class HomeScreen extends React.Component {
                   onChangeText={text => this.setState({input: text})}
               />
             </KeyboardAvoidingView>
-            <FlatList style={{ flex: 1 }}
-              data={this.state.movieData}
-              renderItem={obj => <SearchCard {...obj.item} />}
-              >
-            </FlatList>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate("DetailsScreen")}>
+              <FlatList style={{ flex: 1 }}
+                data={this.state.movieData}
+                renderItem={obj => <SearchCard {...obj.item} />}
+                >
+              </FlatList>
+            </TouchableOpacity>
           </View>
         );
     }

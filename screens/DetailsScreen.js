@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import Constants from 'expo-constants';
 import MovieCard from "../MovieCard";
 
-export default class DetailsScreen extends React.Component {
+class DetailsScreen extends React.Component {
     static navigationOptions = {
         title: "Details",
     };
@@ -26,3 +26,5 @@ const styles = StyleSheet.create({
         paddingTop: Constants.statusBarHeight,
     }
 });
+
+export default DetailsScreen
