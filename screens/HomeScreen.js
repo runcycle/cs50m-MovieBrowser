@@ -33,7 +33,7 @@ export default class HomeScreen extends React.Component {
                   onChangeText={text => this.setState({input: text})}
               />
             </KeyboardAvoidingView>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate("DetailsScreen")}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate("Movie Details")}>
               <FlatList style={{ flex: 1 }}
                 data={this.state.movieData}
                 renderItem={obj => <SearchCard {...obj.item} />}
