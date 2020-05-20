@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, TextInput, KeyboardAvoidingView, View, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, TextInput, KeyboardAvoidingView, View, FlatList, TouchableOpacity, Image, Text } from 'react-native';
 import Constants from 'expo-constants';
 import { fetchMovie } from '../api';
-import SearchCard from '../SearchCard';
+// import SearchCard from '../SearchCard';
 
 export default class HomeScreen extends React.Component {
   state = {
@@ -21,6 +21,20 @@ export default class HomeScreen extends React.Component {
     }
 
     render() {
+      SearchCard = props => (
+        <TouchableOpacity onPress={() => this.props.navigation.navigate("Movie Details")}>
+          <View style={styles.row}>
+              <Image
+                  style={styles.image}
+                  source={{uri: `${props.poster}`}}
+              />
+              <View style={{flexDirection:'column'}}>
+                  <Text style={styles.title}>{props.title}</Text>
+                  <Text style={styles.year}>{props.year}</Text>
+              </View>
+          </View>
+        </TouchableOpacity>
+      );
         return (
           <View behavior="padding" style={styles.container}>
             <KeyboardAvoidingView>
@@ -33,13 +47,11 @@ export default class HomeScreen extends React.Component {
                   onChangeText={text => this.setState({input: text})}
               />
             </KeyboardAvoidingView>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate("Movie Details")}>
-              <FlatList style={{ flex: 1 }}
-                data={this.state.movieData}
-                renderItem={obj => <SearchCard {...obj.item} />}
-                >
-              </FlatList>
-            </TouchableOpacity>
+            <FlatList style={{ flex: 1 }}
+              data={this.state.movieData}
+              renderItem={obj => <SearchCard {...obj.item} />}
+            >
+            </FlatList>
           </View>
         );
     }
@@ -64,6 +76,32 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 5,
         borderRadius: 3,
+    },
+    row: {
+      padding: 15,
+      flexDirection: "row",
+      width: "100%",
+      alignContent: "center",
+      backgroundColor: "#e3e3e3"
+    },
+    image: {
+        marginRight: 10,
+        width: 100,
+        height: 75,
+        borderWidth: 2,
+        borderColor: 'black'
+    },
+    title: {
+        paddingTop: 10,
+        fontSize: 16,
+        fontWeight: "bold",
+        marginRight: 10,
+        marginLeft: 5
+    },
+    year: {
+        fontSize: 15,
+        marginTop: 10,
+        marginLeft: 5
     },
   });
   

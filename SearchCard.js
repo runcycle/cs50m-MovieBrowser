@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
-/*
-Possible Solution:
-https://github.com/react-navigation/react-navigation/issues/2198
-*/
 const SearchCard = props => (
     <View style={styles.row}>
         <Image

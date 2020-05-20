@@ -1,5 +1,6 @@
-import React from 'react'
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import React from 'react';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import Constants from 'expo-constants';
 
 const MovieCard = props => (
     <TouchableOpacity onPress={() => this.props.navigation.navigate("ResultsScreen", item)}>
