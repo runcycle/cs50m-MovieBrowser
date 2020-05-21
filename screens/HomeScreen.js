@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, TextInput, KeyboardAvoidingView, View, FlatList, TouchableOpacity, Image, Text } from 'react-native';
 import Constants from 'expo-constants';
 import { fetchMovie } from '../api';
-// import SearchCard from '../SearchCard';
 
 export default class HomeScreen extends React.Component {
   state = {
@@ -21,8 +20,8 @@ export default class HomeScreen extends React.Component {
     }
 
     render() {
-      SearchCard = props => (
-        <TouchableOpacity onPress={() => this.props.navigation.navigate("Movie Details")}>
+      SearchCard = ({ item }) => (
+        <TouchableOpacity onPress={() => this.props.navigation.navigate("Movie Details", item)}>
           <View style={styles.row}>
               <Image
                   style={styles.image}

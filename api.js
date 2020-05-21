@@ -19,3 +19,14 @@ export const fetchMovie = async (input) => {
         return console.log(err)
     }
 }
+
+export const fetchDetails = async (id) => {
+    const url = `https://www.omdbapi.com/?s=${id}&apikey=${KEY}`
+    try {
+        const response = await fetch(url);
+        const results = await response.json();
+        return results
+    } catch (err) {
+        return console.log(err)
+    }
+}

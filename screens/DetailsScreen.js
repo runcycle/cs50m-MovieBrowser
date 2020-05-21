@@ -1,25 +1,24 @@
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import Constants from 'expo-constants';
-// import MovieCard from "../MovieCard";
-import HomeScreen from "/HomeScreen";
+import { fetchDetails } from '../api';
 
 export default class DetailsScreen extends React.Component {
-   state = {
+    state = {
        input: input,
    }
 
     render () {
-        const MovieCard = props => (
+        const MovieCard = ({ item }) => (
             <TouchableOpacity onPress={() => this.props.navigation.navigate("Movie Search")}>
                 <View style={styles.row}>
                     <Image
                         style={styles.image}
-                        source={{uri: `${props.poster}`}}
+                        source={{uri: `${item.poster}`}}
                     />
                     <View style={{flexDirection:'column'}}>
-                        <Text style={styles.title}>{props.title}</Text>
-                        <Text style={styles.year}>{props.year}</Text>
+                        <Text style={styles.title}>{item.title}</Text>
+                        <Text style={styles.year}>{item.year}</Text>
                     </View>
                 </View>
             </TouchableOpacity>
