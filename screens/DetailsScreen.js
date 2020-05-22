@@ -5,7 +5,7 @@ import { fetchDetails } from '../api';
 
 export default class DetailsScreen extends React.Component {
     state = {
-       input: input,
+       id: id,
    }
 
     render () {

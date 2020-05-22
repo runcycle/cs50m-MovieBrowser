@@ -21,7 +21,7 @@ export const fetchMovie = async (input) => {
 }
 
 export const fetchDetails = async (id) => {
-    const url = `https://www.omdbapi.com/?s=${id}&apikey=${KEY}`
+    const url = `https://www.omdbapi.com/?i=${id}&apikey=${KEY}`
     try {
         const response = await fetch(url);
         const results = await response.json();
