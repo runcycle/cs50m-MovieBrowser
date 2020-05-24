@@ -1,36 +1,43 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import Constants from 'expo-constants';
 import { fetchDetails } from '../api';
 
 export default class DetailsScreen extends React.Component {
     state = {
-       input: input,
+       details: null,
+   }
+
+   componentDidMount() {
+       this.getDetails();
+   }
+
+   getDetails = async () => {
+       const key = this.props.navigation.getParam("key");
+       const result = await fetchDetails(key);
+       this.setState({details: result})
    }
 
     render () {
-        const MovieCard = ({ item }) => (
-            <TouchableOpacity onPress={() => this.props.navigation.navigate("Movie Search")}>
-                <View style={styles.row}>
-                    <Image
-                        style={styles.image}
-                        source={{uri: `${item.poster}`}}
-                    />
-                    <View style={{flexDirection:'column'}}>
-                        <Text style={styles.title}>{item.title}</Text>
-                        <Text style={styles.year}>{item.year}</Text>
-                    </View>
-                </View>
-            </TouchableOpacity>
-        );
+        const { Title, Year, Poster, Rated, Runtime, Director, Actors, Plot, imdbRating, BoxOffice, Awards } = this.state.details;
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
                 <Text>Movie Details</Text>
-                <View>
-                    <MovieCard />
-                </View>
-            </View>
-        )
+                <Image style={styles.image} 
+                    source={{uri: `${Poster}`}}
+                />
+                <Text>{Title}</Text>
+                <Text>{Year}</Text>
+                <Text>{Rated}</Text>
+                <Text>{Runtime}</Text>
+                <Text>{Director}</Text>
+                <Text>{Actors}</Text>
+                <Text>{Plot}</Text>
+                <Text>{imdbRating}</Text>
+                <Text>{BoxOffice}</Text>
+                <Text>{Awards}</Text>
+            </ScrollView>
+        );
     }
 }
 
@@ -42,30 +49,18 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffa200",
         paddingTop: Constants.statusBarHeight,
     },
-    row: {
-        padding: 15,
-        flexDirection: "row",
-        width: "100%",
-        alignContent: "center",
-        backgroundColor: "#e3e3e3"
-    },
     image: {
-        marginRight: 10,
-        width: 100,
-        height: 75,
+        width: 300,
+        height: 300,
         borderWidth: 2,
-        borderColor: 'black'
+        borderColor: 'black',
+        padding: 10
     },
     title: {
         paddingTop: 10,
         fontSize: 16,
         fontWeight: "bold",
         marginRight: 10,
-        marginLeft: 5
-    },
-    year: {
-        fontSize: 15,
-        marginTop: 10,
         marginLeft: 5
     },
 });
