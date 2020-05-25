@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
+import { StyleSheet, Text, Image, ScrollView } from "react-native";
 import Constants from 'expo-constants';
 import { fetchDetails } from '../api';
 
@@ -26,16 +26,16 @@ export default class DetailsScreen extends React.Component {
                 <Image style={styles.image} 
                     source={{uri: `${Poster}`}}
                 />
-                <Text>{Title}</Text>
-                <Text>{Year}</Text>
-                <Text>{Rated}</Text>
-                <Text>{Runtime}</Text>
-                <Text>{Director}</Text>
-                <Text>{Actors}</Text>
-                <Text>{Plot}</Text>
-                <Text>{imdbRating}</Text>
-                <Text>{BoxOffice}</Text>
-                <Text>{Awards}</Text>
+                <Text>{ Title }</Text>
+                <Text>{ Year }</Text>
+                <Text>{ Rated }</Text>
+                <Text>{ Runtime }</Text>
+                <Text>{ Director }</Text>
+                <Text>{ Actors }</Text>
+                <Text>{ Plot }</Text>
+                <Text>{ imdbRating }</Text>
+                <Text>{ BoxOffice }</Text>
+                <Text>{ Awards }</Text>
             </ScrollView>
         );
     }
