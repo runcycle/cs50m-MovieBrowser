@@ -22,7 +22,7 @@ export default class HomeScreen extends React.Component {
     render() {
       // use getParam to try to pass data to DetailsScreen
       SearchCard = ({ item }) => (
-        <TouchableOpacity onPress={() => this.props.navigation.navigate("Movie Details", item)}>
+        <TouchableOpacity onPress={() => navigation.navigate("Movie Details", item)}>
           <View style={styles.row}>
               <Image
                   style={styles.image}
