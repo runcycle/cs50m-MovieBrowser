@@ -5,7 +5,8 @@ import { fetchDetails } from '../api';
 
 export default class DetailsScreen extends React.Component {
     state = {
-       details: null,
+       imdbID: this.props.route.params.imdbID,
+       details: null
    }
 
    componentDidMount() {

@@ -21,16 +21,21 @@ export default class HomeScreen extends React.Component {
 
     render() {
       // use getParam to try to pass data to DetailsScreen
-      SearchCard = ({ item }) => (
-        <TouchableOpacity onPress={() => navigation.navigate("Movie Details", item)}>
+      SearchCard = () => (
+        <TouchableOpacity onPress={() => this.props.navigation.navigate("Movie Details", 
+        {
+          data: this.state.movieData,
+          navigation: this.props.navigation
+        }
+        )}>
           <View style={styles.row}>
               <Image
                   style={styles.image}
-                  source={{uri: `${props.poster}`}}
+                  source={{uri: `${this.props.poster}`}}
               />
               <View style={{flexDirection:'column'}}>
-                  <Text style={styles.title}>{props.title}</Text>
-                  <Text style={styles.year}>{props.year}</Text>
+                  <Text style={styles.title}>{this.props.title}</Text>
+                  <Text style={styles.year}>{this.props.year}</Text>
               </View>
           </View>
         </TouchableOpacity>
@@ -49,7 +54,11 @@ export default class HomeScreen extends React.Component {
             </KeyboardAvoidingView>
             <FlatList style={{ flex: 1 }}
               data={this.state.movieData}
-              renderItem={obj => <SearchCard {...obj.item} />}
+              renderItem={({ item }) => <SearchCard 
+                poster={item.poster} 
+                title={item.title}
+                year={item.year}
+                />}
             >
             </FlatList>
           </View>
