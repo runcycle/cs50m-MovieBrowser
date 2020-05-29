@@ -4,6 +4,10 @@ import Constants from 'expo-constants';
 import { fetchMovie } from '../api';
 
 export default class HomeScreen extends React.Component {
+  static navigationOptions = {
+    headerTitle: "Movie Search"
+  }
+  
   state = {
       input: '',  
       movieData: null,
@@ -19,22 +23,27 @@ export default class HomeScreen extends React.Component {
       this.getMovie();
     }
 
+    handleNavigation = (id, title) => {
+      this.props.navigation.navigate("Movie Details", {id:id, title:title})
+    }
+
+    //renderItem = ({ item }) => <SearchCard {...item} navigationData={this.handleNavigation} />
     render() {
-      // use getParam to try to pass data to DetailsScreen
-      SearchCard = () => (
-        <TouchableOpacity onPress={() => this.props.navigation.navigate("Movie Details", {id:id})}>
-          <View style={styles.row}>
-              <Image
-                  style={styles.image}
-                  source={{uri: `${this.state.poster}`}}
-              />
-              <View style={{flexDirection:'column'}}>
-                  <Text style={styles.title}>{this.state.title}</Text>
-                  <Text style={styles.year}>{this.state.year}</Text>
-              </View>
-          </View>
-        </TouchableOpacity>
-      );
+        SearchCard = props => (
+          <TouchableOpacity onPress={() => props.handleNavigation(props.imdbID, props.title)}>
+            <View style={styles.row}>
+                <Image
+                    style={styles.image}
+                    source={{uri: props.poster}}
+                />
+                <View style={{flexDirection:'column'}}>
+                    <Text style={styles.title}>{props.title}</Text>
+                    <Text style={styles.year}>{props.year}</Text>
+                </View>
+            </View>
+          </TouchableOpacity>
+        );
+
         return (
           <View behavior="padding" style={styles.container}>
             <KeyboardAvoidingView>
@@ -49,7 +58,7 @@ export default class HomeScreen extends React.Component {
             </KeyboardAvoidingView>
             <FlatList style={{ flex: 1 }}
               data={this.state.movieData}
-              renderItem={({ item }) => <SearchCard {...item} />}
+              renderItem={({ item }) => <SearchCard {...item} navigationData={this.handleNavigation} />}
             >
             </FlatList>
           </View>

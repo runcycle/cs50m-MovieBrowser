@@ -14,8 +14,8 @@ export default class DetailsScreen extends React.Component {
    }
 
    getDetails = async () => {
-       const key = this.props.navigation.getParam("id");
-       const result = await fetchDetails(key);
+       const id = this.props.navigation.getParam("id");
+       const result = await fetchDetails(id);
        this.setState({details: result})
    }
 
