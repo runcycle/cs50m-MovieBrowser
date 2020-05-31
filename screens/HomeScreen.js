@@ -23,47 +23,50 @@ export default class HomeScreen extends React.Component {
       this.getMovie();
     }
 
-    handleNavigation = (id, title) => {
-      this.props.navigation.navigate("Movie Details", {id:id, title:title})
-    }
-
+    
     //renderItem = ({ item }) => <SearchCard {...item} navigationData={this.handleNavigation} />
-    render() {
-        SearchCard = props => (
-          <TouchableOpacity onPress={() => props.handleNavigation(props.imdbID, props.title)}>
-            <View style={styles.row}>
-                <Image
-                    style={styles.image}
-                    source={{uri: props.poster}}
-                />
-                <View style={{flexDirection:'column'}}>
-                    <Text style={styles.title}>{props.title}</Text>
-                    <Text style={styles.year}>{props.year}</Text>
-                </View>
-            </View>
-          </TouchableOpacity>
-        );
+  render() {
+      const { navigation } = this.props
 
-        return (
-          <View behavior="padding" style={styles.container}>
-            <KeyboardAvoidingView>
-              <TextInput
-                  style={styles.input}
-                  placeholder="Enter a Movie Title"
-                  placeholderTextColor="#6d6d6d"
-                  returnKeyType="search"
-                  onSubmitEditing={() => this.handleTextChange()}
-                  onChangeText={text => this.setState({input: text})}
+      handleNavigation = (id, title) => {
+        navigation.navigate("Movie Details", {id:id, title:title})
+      }
+
+      SearchCard = props => (
+        <TouchableOpacity onPress={() => props.handleNavigation(props.imdbID, props.title)}>
+          <View style={styles.row}>
+              <Image
+                  style={styles.image}
+                  source={{uri: props.poster}}
               />
-            </KeyboardAvoidingView>
-            <FlatList style={{ flex: 1 }}
-              data={this.state.movieData}
-              renderItem={({ item }) => <SearchCard {...item} navigationData={this.handleNavigation} />}
-            >
-            </FlatList>
+              <View style={{flexDirection:'column'}}>
+                  <Text style={styles.title}>{props.title}</Text>
+                  <Text style={styles.year}>{props.year}</Text>
+              </View>
           </View>
-        );
-    }
+        </TouchableOpacity>
+      );
+
+      return (
+        <View behavior="padding" style={styles.container}>
+          <KeyboardAvoidingView>
+            <TextInput
+                style={styles.input}
+                placeholder="Enter a Movie Title"
+                placeholderTextColor="#6d6d6d"
+                returnKeyType="search"
+                onSubmitEditing={() => this.handleTextChange()}
+                onChangeText={text => this.setState({input: text})}
+            />
+          </KeyboardAvoidingView>
+          <FlatList style={{ flex: 1 }}
+            data={this.state.movieData}
+            renderItem={({ item }) => <SearchCard {...item} navigationData={this.handleNavigation} />}
+          >
+          </FlatList>
+        </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
