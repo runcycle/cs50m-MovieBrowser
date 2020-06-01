@@ -27,11 +27,12 @@ export default class HomeScreen extends React.Component {
     //renderItem = ({ item }) => <SearchCard {...item} navigationData={this.handleNavigation} />
   render() {
       const { navigation } = this.props
-
-      handleNavigation = (id, title) => {
-        navigation.navigate("Movie Details", {id:id, title:title})
+      const movies = this.state.movieData
+      
+      handleNavigation = ( movie ) => {
+        navigation.navigate("Movie Details", { movie })
       }
-
+/*
       SearchCard = props => (
         <TouchableOpacity onPress={() => props.handleNavigation(props.imdbID, props.title)}>
           <View style={styles.row}>
@@ -46,7 +47,7 @@ export default class HomeScreen extends React.Component {
           </View>
         </TouchableOpacity>
       );
-
+*/
       return (
         <View behavior="padding" style={styles.container}>
           <KeyboardAvoidingView>
@@ -60,9 +61,21 @@ export default class HomeScreen extends React.Component {
             />
           </KeyboardAvoidingView>
           <FlatList style={{ flex: 1 }}
-            data={this.state.movieData}
-            renderItem={({ item }) => <SearchCard {...item} navigationData={this.handleNavigation} />}
-          >
+            data={movies}
+            keyExtractor={(item) => item.imdbID}
+            renderItem={({ item:movie }) => 
+              <TouchableOpacity onPress={() => props.handleNavigation(movie)}>
+                <View style={styles.row}>
+                    <Image
+                        style={styles.image}
+                        source={{uri: movie.poster}}
+                    />
+                    <View style={{flexDirection:'column'}}>
+                        <Text style={styles.title}>{movie.title}</Text>
+                        <Text style={styles.year}>{movie.year}</Text>
+                    </View>
+                </View>
+              </TouchableOpacity>}>
           </FlatList>
         </View>
     );
