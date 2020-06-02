@@ -62,9 +62,9 @@ export default class HomeScreen extends React.Component {
           </KeyboardAvoidingView>
           <FlatList style={{ flex: 1 }}
             data={movies}
-            keyExtractor={(item) => item.imdbID}
-            renderItem={({ item:movie }) => 
-              <TouchableOpacity onPress={() => props.handleNavigation(movie)}>
+            key={(item) => item.key}
+            renderItem={({ item: movie }) => (
+              <TouchableOpacity onPress={() => handleNavigation(movie)}>
                 <View style={styles.row}>
                     <Image
                         style={styles.image}
@@ -75,7 +75,7 @@ export default class HomeScreen extends React.Component {
                         <Text style={styles.year}>{movie.year}</Text>
                     </View>
                 </View>
-              </TouchableOpacity>}>
+              </TouchableOpacity>)}>
           </FlatList>
         </View>
     );

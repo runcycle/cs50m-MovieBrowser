@@ -1,44 +1,50 @@
 import React from "react";
-import { StyleSheet, Text, Image, ScrollView } from "react-native";
+import { StyleSheet, Text, Image, ScrollView, SafeAreaView } from "react-native";
 import Constants from 'expo-constants';
 import { fetchDetails } from '../api';
 
 export default class DetailsScreen extends React.Component {
     state = {
-       imdbID: this.props.route.params.imdbID,
-       details: null
-   }
-
-   componentDidMount() {
-       this.getDetails();
-   }
-
-   getDetails = async () => {
-       const id = this.state.imdbID
-       const result = await fetchDetails(id);
-       this.setState({details: result})
-       console.log(this.state.details)
+        movie: movie,
    }
 
     render () {
-        const { Title, Year, Poster, Rated, Runtime, Director, Actors, Plot, imdbRating, BoxOffice, Awards } = this.state.details;
+        // const { Title, Year, Poster, Rated, Runtime, Director, Actors, Plot, imdbRating, BoxOffice, Awards } = this.state.details;
+        const { route } = this.props
+        const { movie: params } = route.params
+        const movie = this.state.movie
+        
+        /*
+        componentDidMount() {
+            this.getDetails();
+        }
+        */
+     
+        getDetails = async (id) => {
+            const result = await fetchDetails(id);
+            this.setState({ movie: result })
+            console.log(this.state.movie)
+        }
+        
         return (
-            <ScrollView style={styles.container}>
-                <Text>Movie Details</Text>
-                <Image style={styles.image} 
-                    source={{uri: `${Poster}`}}
-                />
-                <Text>{ Title }</Text>
-                <Text>{ Year }</Text>
-                <Text>{ Rated }</Text>
-                <Text>{ Runtime }</Text>
-                <Text>{ Director }</Text>
-                <Text>{ Actors }</Text>
-                <Text>{ Plot }</Text>
-                <Text>{ imdbRating }</Text>
-                <Text>{ BoxOffice }</Text>
-                <Text>{ Awards }</Text>
-            </ScrollView>
+            <SafeAreaView style={{ flex: 1 }}>
+                <ScrollView style={styles.container}>
+                    <Text>Movie Details</Text>
+                    <Image style={styles.image} 
+                        source={{ uri: params.Poster }}
+                    />
+                    <Text>{ params.Title }</Text>
+                    <Text>{ params.Year }</Text>
+                    <Text>{ movie.Rated }</Text>
+                    <Text>{ movie.Runtime }</Text>
+                    <Text>{ movie.Director }</Text>
+                    <Text>{ movie.Actors }</Text>
+                    <Text>{ movie.Plot }</Text>
+                    <Text>{ movie.imdbRating }</Text>
+                    <Text>{ movie.BoxOffice }</Text>
+                    <Text>{ movie.Awards }</Text>
+                </ScrollView>
+            </SafeAreaView>
         );
     }
 }
