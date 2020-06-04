@@ -23,31 +23,14 @@ export default class HomeScreen extends React.Component {
       this.getMovie();
     }
 
-    
-    //renderItem = ({ item }) => <SearchCard {...item} navigationData={this.handleNavigation} />
-  render() {
+    render() {
       const { navigation } = this.props
       const movies = this.state.movieData
       
       handleNavigation = ( movie ) => {
         navigation.navigate("Movie Details", { movie })
       }
-/*
-      SearchCard = props => (
-        <TouchableOpacity onPress={() => props.handleNavigation(props.imdbID, props.title)}>
-          <View style={styles.row}>
-              <Image
-                  style={styles.image}
-                  source={{uri: props.poster}}
-              />
-              <View style={{flexDirection:'column'}}>
-                  <Text style={styles.title}>{props.title}</Text>
-                  <Text style={styles.year}>{props.year}</Text>
-              </View>
-          </View>
-        </TouchableOpacity>
-      );
-*/
+
       return (
         <View behavior="padding" style={styles.container}>
           <KeyboardAvoidingView>

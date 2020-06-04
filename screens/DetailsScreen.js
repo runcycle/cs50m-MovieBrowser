@@ -11,7 +11,7 @@ export default class DetailsScreen extends React.Component {
     render () {
         // const { Title, Year, Poster, Rated, Runtime, Director, Actors, Plot, imdbRating, BoxOffice, Awards } = this.state.details;
         const { route } = this.props
-        const { movie: params } = route.params
+        const { movie } = route.params
         const movie = this.state.movie
         
         /*
