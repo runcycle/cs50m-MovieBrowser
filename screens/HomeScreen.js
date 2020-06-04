@@ -28,7 +28,7 @@ export default class HomeScreen extends React.Component {
       const movies = this.state.movieData
       
       handleNavigation = ( movie ) => {
-        navigation.navigate("Movie Details", { movie })
+        navigation.navigate("Movie Details", { movie: this.state.movieData })
       }
 
       return (
