@@ -25,8 +25,8 @@ export const fetchDetails = async (id) => {
     try {
         const response = await fetch(url);
         const results = await response.json();
-        //return results
-        return console.log(results)
+        return results
+        // return console.log(results)
     } catch (err) {
         return console.log(err)
     }

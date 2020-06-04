@@ -6,43 +6,45 @@ import { fetchDetails } from '../api';
 export default class DetailsScreen extends React.Component {
     state = {
         movie: null,
+        imdbID: this.props.route.params.key
+   }
+
+   getDetails = async (id) => {
+        const result = await fetchDetails(id);
+        this.setState({ movie: result })
+        console.log(this.state.movie)
+    }
+
+   componentDidMount() {
+       this.getDetails(this.state.imdbID);
    }
 
     render () {
         // const { Title, Year, Poster, Rated, Runtime, Director, Actors, Plot, imdbRating, BoxOffice, Awards } = this.state.details;
-        const { route } = this.props
-        const { movie } = route.params
-        const movie = this.state.movie
-        
         /*
-        componentDidMount() {
-            this.getDetails();
-        }
+        const { route } = this.props
+        const { movie: params } = route.params
+        const movie = this.state.movie
         */
-     
-        getDetails = async (id) => {
-            const result = await fetchDetails(id);
-            this.setState({ movie: result })
-            console.log(this.state.movie)
-        }
-        
+        //const movie = this.state.movie
+
         return (
             <SafeAreaView style={{ flex: 1 }}>
                 <ScrollView style={styles.container}>
                     <Text>Movie Details</Text>
                     <Image style={styles.image} 
-                        source={{ uri: params.Poster }}
+                        source={{ uri: this.state.movie.Poster }}
                     />
-                    <Text>{ params.Title }</Text>
-                    <Text>{ params.Year }</Text>
-                    <Text>{ movie.Rated }</Text>
-                    <Text>{ movie.Runtime }</Text>
-                    <Text>{ movie.Director }</Text>
-                    <Text>{ movie.Actors }</Text>
-                    <Text>{ movie.Plot }</Text>
-                    <Text>{ movie.imdbRating }</Text>
-                    <Text>{ movie.BoxOffice }</Text>
-                    <Text>{ movie.Awards }</Text>
+                    <Text>{ this.state.movie.Title }</Text>
+                    <Text>{ this.state.movie.Year }</Text>
+                    <Text>{ this.state.movie.Rated }</Text>
+                    <Text>{ this.state.movie.Runtime }</Text>
+                    <Text>{ this.state.movie.Director }</Text>
+                    <Text>{ this.state.movie.Actors }</Text>
+                    <Text>{ this.state.movie.Plot }</Text>
+                    <Text>{ this.state.movie.imdbRating }</Text>
+                    <Text>{ this.state.movie.BoxOffice }</Text>
+                    <Text>{ this.state.movie.Awards }</Text>
                 </ScrollView>
             </SafeAreaView>
         );
