@@ -6,7 +6,7 @@ import { fetchDetails } from '../api';
 export default class DetailsScreen extends React.Component {
     state = {
         movie: null,
-        imdbID: this.props.route.params.key
+        id: null
    }
 
    getDetails = async (id) => {
@@ -16,17 +16,17 @@ export default class DetailsScreen extends React.Component {
     }
 
    componentDidMount() {
-       this.getDetails(this.state.imdbID);
+       this.getDetails(this.state.id);
    }
 
     render () {
-        // const { Title, Year, Poster, Rated, Runtime, Director, Actors, Plot, imdbRating, BoxOffice, Awards } = this.state.details;
-        /*
-        const { route } = this.props
-        const { movie: params } = route.params
-        const movie = this.state.movie
-        */
-        //const movie = this.state.movie
+        const { navigation } = this.props;
+        // grab id from searchedMovie
+        keyFromSearch = navigation.getParam(searchedMovie.key)
+        // dump id into state
+        this.setState({
+            id: keyFromSearch
+        })
 
         return (
             <SafeAreaView style={{ flex: 1 }}>

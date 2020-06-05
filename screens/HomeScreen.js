@@ -24,13 +24,8 @@ export default class HomeScreen extends React.Component {
     }
 
     render() {
-      const { navigation } = this.props
-      const movies = this.state.movieData
+      const searchedMovie = this.state.movieData
       
-      handleNavigation = ( movie ) => {
-        navigation.navigate("Movie Details", { movie })
-      }
-
       return (
         <View behavior="padding" style={styles.container}>
           <KeyboardAvoidingView>
@@ -44,10 +39,14 @@ export default class HomeScreen extends React.Component {
             />
           </KeyboardAvoidingView>
           <FlatList style={{ flex: 1 }}
-            data={movies}
+            data={searchedMovie}
             key={(item) => item.key}
             renderItem={({ item: movie }) => (
-              <TouchableOpacity onPress={() => handleNavigation(movie)}>
+              <TouchableOpacity onPress={() => {this.props.navigation.navigate("Movie Details", {
+                searchedMovie: searchedMovie,
+                });
+              }}
+            >
                 <View style={styles.row}>
                     <Image
                         style={styles.image}
