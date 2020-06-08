@@ -5,8 +5,8 @@ import { fetchDetails } from '../api';
 
 export default class DetailsScreen extends React.Component {
     state = {
-        movie: null,
-        id: null
+        id: this.props.route.params.id,
+        movie: null
    }
 
    getDetails = async (id) => {
@@ -20,14 +20,6 @@ export default class DetailsScreen extends React.Component {
    }
 
     render () {
-        const { navigation } = this.props;
-        // grab id from searchedMovie
-        keyFromSearch = navigation.getParam(searchedMovie.key)
-        // dump id into state
-        this.setState({
-            id: keyFromSearch
-        })
-
         return (
             <SafeAreaView style={{ flex: 1 }}>
                 <ScrollView style={styles.container}>
