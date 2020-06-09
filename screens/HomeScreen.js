@@ -19,7 +19,7 @@ export default class HomeScreen extends React.Component {
       console.log(this.state.movieData)
     }
 
-    handleTextChange() {
+    handleSubmit() {
       this.getMovie();
     }
 
@@ -32,7 +32,7 @@ export default class HomeScreen extends React.Component {
                 placeholder="Enter a Movie Title"
                 placeholderTextColor="#6d6d6d"
                 returnKeyType="search"
-                onSubmitEditing={() => this.handleTextChange()}
+                onSubmitEditing={() => this.handleSubmit()}
                 onChangeText={text => this.setState({input: text})}
             />
           </KeyboardAvoidingView>
@@ -40,8 +40,7 @@ export default class HomeScreen extends React.Component {
             data={ this.state.movieData }
             renderItem={({ item: movie }) => (
               <TouchableOpacity onPress={() => {this.props.navigation.navigate("Movie Details", {
-                id: this.state.movieData.key,
-                navigation: this.props.navigation
+                id: this.state.movieData
                 });
               }}
             >

@@ -5,7 +5,7 @@ import { fetchDetails } from '../api';
 
 export default class DetailsScreen extends React.Component {
     state = {
-        id: this.props.route.params.id,
+        id: null,
         movie: null
    }
 
@@ -20,25 +20,31 @@ export default class DetailsScreen extends React.Component {
    }
 
     render () {
+        //const movie = this.state.movie
+        const { navigation } = this.props;
+
         return (
+        <Text>id: {JSON.stringify(navigation.getParam("id"))}</Text>
+            /*
             <SafeAreaView style={{ flex: 1 }}>
                 <ScrollView style={styles.container}>
                     <Text>Movie Details</Text>
                     <Image style={styles.image} 
-                        source={{ uri: this.state.movie.Poster }}
+                        source={{ uri: movie.Poster }}
                     />
-                    <Text>{ this.state.movie.Title }</Text>
-                    <Text>{ this.state.movie.Year }</Text>
-                    <Text>{ this.state.movie.Rated }</Text>
-                    <Text>{ this.state.movie.Runtime }</Text>
-                    <Text>{ this.state.movie.Director }</Text>
-                    <Text>{ this.state.movie.Actors }</Text>
-                    <Text>{ this.state.movie.Plot }</Text>
-                    <Text>{ this.state.movie.imdbRating }</Text>
-                    <Text>{ this.state.movie.BoxOffice }</Text>
-                    <Text>{ this.state.movie.Awards }</Text>
+                    <Text>{ movie.Title }</Text>
+                    <Text>{ movie.Year }</Text>
+                    <Text>{ movie.Rated }</Text>
+                    <Text>{ movie.Runtime }</Text>
+                    <Text>{ movie.Director }</Text>
+                    <Text>{ movie.Actors }</Text>
+                    <Text>{ movie.Plot }</Text>
+                    <Text>{ movie.imdbRating }</Text>
+                    <Text>{ movie.BoxOffice }</Text>
+                    <Text>{ movie.Awards }</Text>
                 </ScrollView>
             </SafeAreaView>
+            */
         );
     }
 }
