@@ -5,26 +5,27 @@ import { fetchDetails } from '../api';
 
 export default class DetailsScreen extends React.Component {
     state = {
-        id: null,
-        movie: null
-   }
-
-   getDetails = async (id) => {
-        const result = await fetchDetails(id);
-        this.setState({ movie: result })
-        console.log(this.state.movie)
-    }
-
-   componentDidMount() {
-       this.getDetails(this.state.id);
+        movie: movie
    }
 
     render () {
-        //const movie = this.state.movie
-        const { navigation } = this.props;
+        //const { navigation } = this.props;
+        const { route } = this.props;
+        const { movie: params } = route.params;
+        const movie = this.state.movie;
+
+        getDetails = async (id) => {
+            const result = await fetchDetails(id);
+            this.setState({ movie: result })
+            console.log(this.state.movie)
+        }
+        
+        if (this.state.movie.imdbID === 0) {
+            getDetails(params.imdbID)
+        }
 
         return (
-        <Text>id: {JSON.stringify(navigation.getParam("id"))}</Text>
+        <Text>id: {JSON.stringify(id)}</Text>
             /*
             <SafeAreaView style={{ flex: 1 }}>
                 <ScrollView style={styles.container}>
