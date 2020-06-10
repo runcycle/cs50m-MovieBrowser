@@ -9,6 +9,7 @@ export default class DetailsScreen extends React.Component {
    }
 
     render () {
+<<<<<<< HEAD
         //const { navigation } = this.props;
         const { route } = this.props;
         const { movie: params } = route.params;
@@ -26,6 +27,13 @@ export default class DetailsScreen extends React.Component {
 
         return (
         <Text>id: {JSON.stringify(id)}</Text>
+=======
+        //const movie = this.state.movie
+        //const { navigation } = this.props;
+
+        return (
+        <Text>id: {JSON.stringify(this.props.navigation.getParam("id"))}</Text>
+>>>>>>> c812f4a0162bae69724771a162f3593fb39bc47a
             /*
             <SafeAreaView style={{ flex: 1 }}>
                 <ScrollView style={styles.container}>
