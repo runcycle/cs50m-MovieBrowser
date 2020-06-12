@@ -9,22 +9,29 @@ export default class DetailsScreen extends React.Component {
         movie: null
    }
 
+   getID = ({ route }) => {
+       const { id } = route.params;
+       console.log({id})
+   }
+   /*
    getDetails = async (id) => {
         const result = await fetchDetails(id);
         this.setState({ movie: result })
         console.log(this.state.movie)
     }
-
-   componentDidMount() {
-       this.getDetails(this.state.id);
+    */
+   
+    componentDidMount() {
+        this.getID();
+       //this.getDetails(this.state.id);
    }
-
+   
     render () {
         //const movie = this.state.movie
         //const { navigation } = this.props;
 
         return (
-        <Text>id: {JSON.stringify(this.props.navigation.getParam("id"))}</Text>
+        <Text>id: </Text>
             /*
             <SafeAreaView style={{ flex: 1 }}>
                 <ScrollView style={styles.container}>
