@@ -16,7 +16,8 @@ export default class DetailsScreen extends React.Component {
     
     render() {
         return (
-            <Text>id: </Text>
+            <View>
+                <Text>id: </Text>
                 <SafeAreaView style={{ flex: 1 }}>
                     <ScrollView style={styles.container}>
                         <Text>Movie Details</Text>
@@ -35,6 +36,7 @@ export default class DetailsScreen extends React.Component {
                         <Text>{ movie.Awards }</Text>
                     </ScrollView>
                 </SafeAreaView>
+            </View>
         );
     }
 }
