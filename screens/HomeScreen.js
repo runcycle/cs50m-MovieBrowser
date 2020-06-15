@@ -41,7 +41,8 @@ export default class HomeScreen extends React.Component {
             data={ this.state.movieData }
             renderItem={({ item: movie }) => (
               <TouchableOpacity onPress={() => {navigation.navigate("Movie Details", {
-                id: this.state.movieData
+                //"undefined is not an object error"
+                id: this.state.movieData.movie.key
                 });
               }}
             >

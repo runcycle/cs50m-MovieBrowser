@@ -5,19 +5,31 @@ import { fetchDetails } from '../api';
 
 export default class DetailsScreen extends React.Component {
     state = {
-        movie: movie
+        movie: null,
+        idFromSearch: this.props.route.params.id
    }
-
-   getDetails = async (id) => {
-    const result = await fetchDetails(id);
+   /*
+   getId = ({ route }) => {
+       const { id } = route.params
+       this.setState({ idFromSearch: JSON.stringify(id) })
+   }
+   */
+   getDetails = async () => {
+    const result = await fetchDetails(this.state.idFromSearch);
     this.setState({ movie: result })
     console.log(this.state.movie)
+    }
+
+    componentDidMount() {
+        // this.getId();
+        this.getDetails();
     }
     
     render() {
         return (
             <View>
-                <Text>id: </Text>
+                <Text>id: {this.state.idFromSearch}</Text>
+                {/*
                 <SafeAreaView style={{ flex: 1 }}>
                     <ScrollView style={styles.container}>
                         <Text>Movie Details</Text>
@@ -36,6 +48,7 @@ export default class DetailsScreen extends React.Component {
                         <Text>{ movie.Awards }</Text>
                     </ScrollView>
                 </SafeAreaView>
+                */}
             </View>
         );
     }
