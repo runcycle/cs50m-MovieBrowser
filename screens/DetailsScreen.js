@@ -1,19 +1,20 @@
 import React from "react";
-import { StyleSheet, Text, Image, ScrollView, SafeAreaView } from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView, SafeAreaView } from "react-native";
 import Constants from 'expo-constants';
 import { fetchDetails } from '../api';
 
 export default class DetailsScreen extends React.Component {
     state = {
         movie: null,
-        idFromSearch: this.props.route.params.id
+        idFromSearch: null
    }
-   /*
+   
    getId = ({ route }) => {
        const { id } = route.params
        this.setState({ idFromSearch: JSON.stringify(id) })
+       console.log (this.state.idFromSearch)
    }
-   */
+   
    getDetails = async () => {
     const result = await fetchDetails(this.state.idFromSearch);
     this.setState({ movie: result })
