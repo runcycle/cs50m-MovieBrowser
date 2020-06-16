@@ -5,34 +5,28 @@ import { fetchDetails } from '../api';
 
 export default class DetailsScreen extends React.Component {
     state = {
-        movie: null,
-        idFromSearch: null
+        movie: []
    }
-   
-   getId = ({ route }) => {
-       const { id } = route.params
-       this.setState({ idFromSearch: JSON.stringify(id) })
-       console.log (this.state.idFromSearch)
-   }
-   
-   getDetails = async () => {
-    const result = await fetchDetails(this.state.idFromSearch);
-    this.setState({ movie: result })
-    console.log(this.state.movie)
-    }
-
-    componentDidMount() {
-        // this.getId();
-        this.getDetails();
-    }
     
     render() {
+        const { route } = this.props
+        const { movie } = route.params;
+        const id = JSON.stringify(movie.imdbID)
+
+        getDetails = async (id) => {
+            const result = await fetchDetails(id)
+            this.setState({ movie: result })
+            console.log(this.state.movie)
+        }
+
+       if (this.state.movie.imdbID === 0) {
+            getDetails(id);
+        }
+
         return (
             <View>
-                <Text>id: {this.state.idFromSearch}</Text>
-                {/*
-                <SafeAreaView style={{ flex: 1 }}>
-                    <ScrollView style={styles.container}>
+                <SafeAreaView style={styles.container}>
+                    <ScrollView>
                         <Text>Movie Details</Text>
                         <Image style={styles.image} 
                             source={{ uri: movie.Poster }}
@@ -49,7 +43,6 @@ export default class DetailsScreen extends React.Component {
                         <Text>{ movie.Awards }</Text>
                     </ScrollView>
                 </SafeAreaView>
-                */}
             </View>
         );
     }

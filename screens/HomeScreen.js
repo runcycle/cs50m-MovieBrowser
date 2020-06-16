@@ -4,18 +4,14 @@ import Constants from 'expo-constants';
 import { fetchMovie } from '../api';
 
 export default class HomeScreen extends React.Component {
-  static navigationOptions = {
-    headerTitle: "Movie Search"
-  }
-  
   state = {
       input: '',  
-      movieData: null,
+      movieData: []
     }
 
     getMovie = async () => {
       const results = await fetchMovie(this.state.input)
-      this.setState({ movieData: results })
+      this.setState({ movieData: results.Search })
       console.log(this.state.movieData)
     }
 
@@ -25,6 +21,11 @@ export default class HomeScreen extends React.Component {
 
     render() {
       const { navigation } = this.props;
+
+      const navigateDetailScreen = (movie) => {
+        navigation.navigate("Movie Details", { movie });
+      };
+
       return (
         <View behavior="padding" style={styles.container}>
           <KeyboardAvoidingView>
@@ -39,21 +40,17 @@ export default class HomeScreen extends React.Component {
           </KeyboardAvoidingView>
           <FlatList style={{ flex: 1 }}
             data={ this.state.movieData }
+            keyExtractor={(item) => item.imdbID}
             renderItem={({ item: movie }) => (
-              <TouchableOpacity onPress={() => {navigation.navigate("Movie Details", {
-                //"undefined is not an object error"
-                id: this.state.movieData.key
-                });
-              }}
-            >
+              <TouchableOpacity onPress={() => navigateDetailScreen(movie)}>
                 <View style={styles.row}>
                     <Image
                         style={styles.image}
-                        source={{uri: movie.poster}}
+                        source={{uri: movie.Poster}}
                     />
                     <View style={{flexDirection:'column'}}>
-                        <Text style={styles.title}>{movie.title}</Text>
-                        <Text style={styles.year}>{movie.year}</Text>
+                        <Text style={styles.title}>{movie.Title}</Text>
+                        <Text style={styles.year}>{movie.Year}</Text>
                     </View>
                 </View>
               </TouchableOpacity>)}>
