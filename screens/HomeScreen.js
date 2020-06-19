@@ -13,6 +13,7 @@ export default class HomeScreen extends React.Component {
       const results = await fetchMovie(this.state.input)
       this.setState({ movieData: results.Search })
       console.log(this.state.movieData)
+      console.log(this.state.movieData.imdbID)
     }
 
     handleSubmit() {
@@ -22,8 +23,8 @@ export default class HomeScreen extends React.Component {
     render() {
       const { navigation } = this.props;
 
-      const navigateDetailScreen = (movie) => {
-        navigation.navigate("Movie Details", { movie });
+      const navigateDetailScreen = () => {
+        navigation.navigate("Movie Details", { id: this.state.movieData[0].imdbID });
       };
 
       return (
@@ -63,7 +64,6 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
         alignItems: "center",
         backgroundColor: "#ffa200",
         paddingTop: Constants.statusBarHeight,

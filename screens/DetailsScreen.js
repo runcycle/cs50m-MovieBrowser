@@ -5,44 +5,46 @@ import { fetchDetails } from '../api';
 
 export default class DetailsScreen extends React.Component {
     state = {
-        movie: []
-   }
+        id: this.props.route.params.id,
+        movie: {}
+    }
+   
+
+    getDetails = async (id) => {
+        const result = await fetchDetails(id)
+        this.setState({ movie: result })
+        console.log(this.state.movie)
+    }
+
+    componentDidMount() {
+        this.getDetails(this.state.id)
+    }
+
+    componentDidUpdate() {
+        this.props.navigation.setOptions({ title: this.state.movie.Title });
+      }
     
     render() {
-        const { route } = this.props
-        const { movie } = route.params;
-        const id = JSON.stringify(movie.imdbID)
-
-        getDetails = async (id) => {
-            const result = await fetchDetails(id)
-            this.setState({ movie: result })
-            console.log(this.state.movie)
-        }
-
-       if (this.state.movie.imdbID === 0) {
-            getDetails(id);
-        }
-
         return (
-            <View>
-                <SafeAreaView style={styles.container}>
-                    <ScrollView>
-                        <Text>Movie Details</Text>
-                        <Image style={styles.image} 
-                            source={{ uri: movie.Poster }}
+            <View style={styles.container}>
+                <Image style={styles.image} 
+                            source={{ uri: this.state.movie.Poster }}
                         />
-                        <Text>{ movie.Title }</Text>
-                        <Text>{ movie.Year }</Text>
-                        <Text>{ movie.Rated }</Text>
-                        <Text>{ movie.Runtime }</Text>
-                        <Text>{ movie.Director }</Text>
-                        <Text>{ movie.Actors }</Text>  
-                        <Text>{ movie.Plot }</Text>
-                        <Text>{ movie.imdbRating }</Text>
-                        <Text>{ movie.BoxOffice }</Text>
-                        <Text>{ movie.Awards }</Text>
-                    </ScrollView>
-                </SafeAreaView>
+                <ScrollView>
+                    <View>
+                        <Text style={styles.title}>Movie Details</Text>
+                        <Text style={styles.text}>{ this.state.movie.Title }</Text>
+                        <Text style={styles.text}>{ this.state.movie.Year }</Text>
+                        <Text style={styles.text}>{ this.state.movie.Rated }</Text>
+                        <Text style={styles.text}>{ this.state.movie.Runtime }</Text>
+                        <Text style={styles.text}>{ this.state.movie.Director }</Text>
+                        <Text style={styles.text}>{ this.state.movie.Actors }</Text>  
+                        <Text style={styles.text}>{ this.state.movie.Plot }</Text>
+                        <Text style={styles.text}>{ this.state.movie.imdbRating }</Text>
+                        <Text style={styles.text}>{ this.state.movie.BoxOffice }</Text>
+                        <Text style={styles.text}>{ this.state.movie.Awards }</Text>
+                    </View>
+                </ScrollView>
             </View>
         );
     }
@@ -52,24 +54,32 @@ export default class DetailsScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
         alignItems: "center",
         backgroundColor: "#ffa200",
         paddingTop: Constants.statusBarHeight,
     },
     image: {
-        width: 300,
-        height: 300,
+        width: "80%",
+        height: "90%",
         borderWidth: 2,
-        borderColor: 'black',
-        padding: 10
+        borderColor: "black",
+        padding: 10,
+        marginTop: 25,
+        marginBottom: 20,
+        alignSelf: "center",
     },
     title: {
-        paddingTop: 10,
+        paddingTop: 5,
         fontSize: 16,
         fontWeight: "bold",
-        marginRight: 10,
-        marginLeft: 5
+        marginRight: 5,
+        marginLeft: 8
     },
+    text: {
+        color: "black",
+        fontSize: 12,
+        paddingHorizontal: 10,
+        marginBottom: 3,
+      },
 });
 
