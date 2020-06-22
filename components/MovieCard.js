@@ -1,21 +1,26 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import Constants from 'expo-constants';
 
-const MovieCard = props => (
-    <TouchableOpacity onPress={() => this.props.navigation.navigate("ResultsScreen", item)}>
-        <View style={styles.row}>
-            <Image
-                style={styles.image}
-                source={{uri: `${props.poster}`}}
-            />
-            <View style={{flexDirection:'column'}}>
-                <Text style={styles.title}>{props.title}</Text>
-                <Text style={styles.year}>{props.year}</Text>
+export default class MovieCard extends React.Component {
+    render() {
+        return (
+            <View>
+                <TouchableOpacity onPress={() => this.navigateDetailScreen(this.props.imdbID)}>
+                    <View style={styles.row}>
+                        <Image
+                            style={styles.image}
+                            source={{uri: this.props.poster}}
+                        />
+                        <View style={{flexDirection:'column'}}>
+                            <Text style={styles.title}>{this.props.title}</Text>
+                            <Text style={styles.year}>{this.props.year}</Text>
+                        </View>
+                    </View>
+                </TouchableOpacity>
             </View>
-        </View>
-    </TouchableOpacity>
-);
+        );
+    }
+}
 
 const styles = StyleSheet.create({
     row: {
@@ -45,5 +50,3 @@ const styles = StyleSheet.create({
         marginLeft: 5
     },
 });
-
-export default MovieCard
