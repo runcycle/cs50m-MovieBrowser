@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
         paddingTop: Constants.statusBarHeight,
     },
     image: {
-        width: "80%",
-        height: "90%",
+        width: "50%",
+        height: "50%",
         borderWidth: 2,
         borderColor: "black",
         padding: 10,
