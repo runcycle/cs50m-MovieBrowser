@@ -41,7 +41,7 @@ export default class HomeScreen extends React.Component {
           </KeyboardAvoidingView>
           <FlatList style={{ flex: 1 }}
             data={ this.state.movieData }
-            keyExtractor={(item) => item.imdbID}
+            keyExtractor={item => item.imdbID}
             renderItem={({ item: movie }) => (
               <TouchableOpacity onPress={() => navigateDetailScreen(movie)}>
                 <View style={styles.row}>

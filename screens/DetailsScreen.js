@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
         paddingTop: Constants.statusBarHeight,
     },
     image: {
-        width: "80%",
-        height: "90%",
+        width: "50%",
+        height: "60%",
         borderWidth: 2,
         borderColor: "black",
         padding: 10,
@@ -69,11 +69,12 @@ const styles = StyleSheet.create({
         alignSelf: "center",
     },
     title: {
+        alignContent: "center",
         paddingTop: 5,
         fontSize: 16,
         fontWeight: "bold",
         marginRight: 5,
-        marginLeft: 8
+        marginLeft: 8,
     },
     text: {
         color: "black",
