@@ -59,17 +59,13 @@ const styles = StyleSheet.create({
         paddingTop: Constants.statusBarHeight,
     },
     image: {
-        width: "50%",
-<<<<<<< HEAD
+        width: "55%",
         height: "60%",
-=======
-        height: "50%",
->>>>>>> 245d319ca3d0ef20c838f01ed158c83d106be689
         borderWidth: 2,
         borderColor: "black",
         padding: 10,
-        marginTop: 25,
-        marginBottom: 20,
+        marginTop: 0,
+        marginBottom: 5,
         alignSelf: "center",
     },
     title: {
