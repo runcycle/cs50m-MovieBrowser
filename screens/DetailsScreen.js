@@ -32,17 +32,36 @@ export default class DetailsScreen extends React.Component {
                         />
                 <ScrollView>
                     <View>
-                        <Text style={styles.title}>Movie Details</Text>
-                        <Text style={styles.text}>{ this.state.movie.Title }</Text>
-                        <Text style={styles.text}>{ this.state.movie.Year }</Text>
-                        <Text style={styles.text}>{ this.state.movie.Rated }</Text>
-                        <Text style={styles.text}>{ this.state.movie.Runtime }</Text>
-                        <Text style={styles.text}>{ this.state.movie.Director }</Text>
-                        <Text style={styles.text}>{ this.state.movie.Actors }</Text>  
-                        <Text style={styles.text}>{ this.state.movie.Plot }</Text>
-                        <Text style={styles.text}>{ this.state.movie.imdbRating }</Text>
-                        <Text style={styles.text}>{ this.state.movie.BoxOffice }</Text>
-                        <Text style={styles.text}>{ this.state.movie.Awards }</Text>
+                        <View style={{flexDirection: "row"}}>
+                            <Text style={styles.title}>Movie Details</Text>
+                        </View>
+                        <View style={{flexDirection: "row"}}>
+                            <Text style={styles.textTitle}>Title:</Text><Text style={styles.text}>{ this.state.movie.Title }</Text>
+                        </View>
+                        <View style={{flexDirection: "row"}}>
+                            <Text style={styles.textTitle}>Year:</Text><Text style={styles.text}>{ this.state.movie.Year }</Text>
+                        </View>
+                        <View style={{flexDirection: "row"}}>
+                            <Text style={styles.textTitle}>Rating:</Text><Text style={styles.text}>{ this.state.movie.Rated }</Text>
+                        </View>
+                        <View style={{flexDirection: "row"}}>
+                            <Text style={styles.textTitle}>Runtime:</Text><Text style={styles.text}>{ this.state.movie.Runtime }</Text>
+                        </View>
+                        <View style={{flexDirection: "row"}}>
+                            <Text style={styles.textTitle}>Director:</Text><Text style={styles.text}>{ this.state.movie.Director }</Text>
+                        </View>
+                        <View style={{flexDirection: "row"}}>
+                            <Text style={styles.textTitle}>Starring:</Text><Text style={styles.text}>{ this.state.movie.Actors }</Text>
+                        </View>
+                        <View style={{flexDirection: "row"}}>
+                            <Text style={styles.textTitle}>Plot:</Text><Text style={styles.text}>{ this.state.movie.Plot }</Text>
+                        </View>
+                        <View style={{flexDirection: "row"}}>
+                            <Text style={styles.textTitle}>imdb Rating:</Text><Text style={styles.text}>{ this.state.movie.imdbRating }</Text>
+                        </View>
+                        <View style={{flexDirection: "row"}}>
+                            <Text style={styles.textTitle}>Awards:</Text><Text style={styles.text}>{ this.state.movie.Awards }</Text>
+                        </View>
                     </View>
                 </ScrollView>
             </View>
@@ -63,23 +82,29 @@ const styles = StyleSheet.create({
         height: "50%",
         borderWidth: 2,
         borderColor: "black",
-        padding: 10,
-        marginTop: 25,
-        marginBottom: 20,
+        padding: 0,
+        marginTop: 0,
+        marginBottom: 5,
         alignSelf: "center",
     },
     title: {
-        paddingTop: 5,
-        fontSize: 16,
+        paddingTop: 0,
+        fontSize: 18,
         fontWeight: "bold",
-        marginRight: 5,
-        marginLeft: 8
+        paddingHorizontal: 10,
     },
     text: {
         color: "black",
-        fontSize: 12,
-        paddingHorizontal: 10,
+        fontSize: 14,
+        paddingHorizontal: 5,
         marginBottom: 3,
       },
+    textTitle: {
+        color: "black",
+        fontSize: 14,
+        fontWeight: "bold",
+        paddingLeft: 10,
+        marginBottom: 3,
+    }
 });
 
