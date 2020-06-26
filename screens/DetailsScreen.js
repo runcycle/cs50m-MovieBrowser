@@ -60,7 +60,11 @@ const styles = StyleSheet.create({
     },
     image: {
         width: "50%",
+<<<<<<< HEAD
         height: "60%",
+=======
+        height: "50%",
+>>>>>>> 245d319ca3d0ef20c838f01ed158c83d106be689
         borderWidth: 2,
         borderColor: "black",
         padding: 10,

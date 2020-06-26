@@ -23,8 +23,8 @@ export default class HomeScreen extends React.Component {
     render() {
       const { navigation } = this.props;
 
-      const navigateDetailScreen = () => {
-        navigation.navigate("Movie Details", { id: this.state.movieData[0].imdbID });
+      const navigateDetailScreen = (item) => {
+        navigation.navigate("Movie Details", { id: item.imdbID });
       };
 
       return (
@@ -41,17 +41,23 @@ export default class HomeScreen extends React.Component {
           </KeyboardAvoidingView>
           <FlatList style={{ flex: 1 }}
             data={ this.state.movieData }
+<<<<<<< HEAD
             keyExtractor={item => item.imdbID}
             renderItem={({ item: movie }) => (
               <TouchableOpacity onPress={() => navigateDetailScreen(movie)}>
+=======
+            keyExtractor={(item) => item.imdbID}
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={() => navigateDetailScreen(item)}>
+>>>>>>> 245d319ca3d0ef20c838f01ed158c83d106be689
                 <View style={styles.row}>
                     <Image
                         style={styles.image}
-                        source={{uri: movie.Poster}}
+                        source={{uri: item.Poster}}
                     />
                     <View style={{flexDirection:'column'}}>
-                        <Text style={styles.title}>{movie.Title}</Text>
-                        <Text style={styles.year}>{movie.Year}</Text>
+                        <Text style={styles.title}>{item.Title}</Text>
+                        <Text style={styles.year}>{item.Year}</Text>
                     </View>
                 </View>
               </TouchableOpacity>)}>
