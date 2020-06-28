@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TextInput, KeyboardAvoidingView, View, FlatList, TouchableOpacity, Image, Text } from 'react-native';
+import { StyleSheet, TextInput, View, FlatList, TouchableOpacity, Image, Text } from 'react-native';
 import Constants from 'expo-constants';
 import { fetchMovie } from '../api';
 
@@ -13,7 +13,6 @@ export default class HomeScreen extends React.Component {
       const results = await fetchMovie(this.state.input)
       this.setState({ movieData: results.Search })
       console.log(this.state.movieData)
-      console.log(this.state.movieData.imdbID)
     }
 
     handleSubmit() {
@@ -29,7 +28,7 @@ export default class HomeScreen extends React.Component {
 
       return (
         <View behavior="padding" style={styles.container}>
-          <KeyboardAvoidingView>
+          <View>
             <TextInput
                 style={styles.input}
                 placeholder="Enter a Movie Title"
@@ -38,7 +37,7 @@ export default class HomeScreen extends React.Component {
                 onSubmitEditing={() => this.handleSubmit()}
                 onChangeText={text => this.setState({input: text})}
             />
-          </KeyboardAvoidingView>
+          </View>
           <FlatList style={{ flex: 1 }}
             data={ this.state.movieData }
             keyExtractor={(item) => item.imdbID}

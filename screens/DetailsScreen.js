@@ -53,8 +53,8 @@ export default class DetailsScreen extends React.Component {
                         <View style={{flexDirection: "row"}}>
                             <Text style={styles.textTitle}>Starring:</Text><Text style={styles.text}>{ this.state.movie.Actors }</Text>
                         </View>
-                        <View style={{flexDirection: "row"}}>
-                            <Text style={styles.textTitle}>Plot:</Text><Text style={styles.text}>{ this.state.movie.Plot }</Text>
+                        <View style={{flexDirection: "row", flex: 1}}>
+                            <Text style={styles.textTitle}>Plot:</Text><Text style={styles.plotText}>{ this.state.movie.Plot }</Text>
                         </View>
                         <View style={{flexDirection: "row"}}>
                             <Text style={styles.textTitle}>imdb Rating:</Text><Text style={styles.text}>{ this.state.movie.imdbRating }</Text>
@@ -78,8 +78,8 @@ const styles = StyleSheet.create({
         paddingTop: Constants.statusBarHeight,
     },
     image: {
-        width: "55%",
-        height: "60%",
+        width: "45%",
+        height: "50%",
         borderWidth: 2,
         borderColor: "black",
         padding: 0,
@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
     },
     title: {
+        alignSelf: "center",
         paddingTop: 0,
         fontSize: 18,
         fontWeight: "bold",
@@ -98,7 +99,16 @@ const styles = StyleSheet.create({
         fontSize: 14,
         paddingHorizontal: 5,
         marginBottom: 3,
+        textAlign: "center"
       },
+    plotText: {
+        color: "black",
+        fontSize: 14,
+        paddingHorizontal: 10,
+        marginBottom: 3,
+        flex: 1,
+        flexWrap: "wrap"
+    },
     textTitle: {
         color: "black",
         fontSize: 14,
