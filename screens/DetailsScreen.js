@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, ScrollView, SafeAreaView } from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import Constants from 'expo-constants';
 import { fetchDetails } from '../api';
 
@@ -32,7 +32,7 @@ export default class DetailsScreen extends React.Component {
                         />
                 <ScrollView>
                     <View>
-                        <View style={{flexDirection: "row"}}>
+                        <View style={{flexDirection: "row", flex: 1, flexWrap: "wrap"}}>
                             <Text style={styles.title}>Movie Details</Text>
                         </View>
                         <View style={{flexDirection: "row"}}>
@@ -50,16 +50,16 @@ export default class DetailsScreen extends React.Component {
                         <View style={{flexDirection: "row"}}>
                             <Text style={styles.textTitle}>Director:</Text><Text style={styles.text}>{ this.state.movie.Director }</Text>
                         </View>
-                        <View style={{flexDirection: "row"}}>
+                        <View style={{flexDirection: "row", flex: 1, flexWrap: "wrap"}}>
                             <Text style={styles.textTitle}>Starring:</Text><Text style={styles.text}>{ this.state.movie.Actors }</Text>
                         </View>
-                        <View style={{flexDirection: "row", flex: 1}}>
+                        <View style={{flexDirection: "row", flex: 1, flexWrap: "wrap"}}>
                             <Text style={styles.textTitle}>Plot:</Text><Text style={styles.plotText}>{ this.state.movie.Plot }</Text>
                         </View>
                         <View style={{flexDirection: "row"}}>
                             <Text style={styles.textTitle}>imdb Rating:</Text><Text style={styles.text}>{ this.state.movie.imdbRating }</Text>
                         </View>
-                        <View style={{flexDirection: "row"}}>
+                        <View style={{flexDirection: "row", flex: 1, flexWrap: "wrap"}}>
                             <Text style={styles.textTitle}>Awards:</Text><Text style={styles.text}>{ this.state.movie.Awards }</Text>
                         </View>
                     </View>
@@ -88,8 +88,8 @@ const styles = StyleSheet.create({
         alignSelf: "center",
     },
     title: {
-        alignSelf: "center",
-        paddingTop: 0,
+        flex: 1,
+        textAlign: "center",
         fontSize: 18,
         fontWeight: "bold",
         paddingHorizontal: 10,
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     text: {
         color: "black",
         fontSize: 14,
-        paddingHorizontal: 5,
+        paddingHorizontal: 10,
         marginBottom: 3,
         textAlign: "center"
       },
@@ -106,8 +106,6 @@ const styles = StyleSheet.create({
         fontSize: 14,
         paddingHorizontal: 10,
         marginBottom: 3,
-        flex: 1,
-        flexWrap: "wrap"
     },
     textTitle: {
         color: "black",
